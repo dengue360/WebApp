@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="dengue360">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Dengue 360</title>
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/angucomplete-alt/angucomplete-alt.css">
+	<style>
+		.jumbotron{
+			width: 400px;
+			text-align: center;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 20px;
+			margin-top: 20px;
+			border-radius: 3px;
+			background-color: LightGray;
+		}
+		.img-logo{
+			width: 250px;
+			height: 250px;
+
+		}
+		body{
+			background-color: rgb(236, 240, 245);
+		}
+
+		.footer {
+		  position: absolute;
+		  bottom: 0;
+		  width: 100%;
+		  /* Set the fixed height of the footer here */
+		  height: 60px;
+		  background-color: #3c8dbc;
+		}
+		.footer > .container {
+		  padding-right: 15px;
+		  padding-left: 15px;
+		}
+		.container .text-muted {
+		  margin: 20px 0;
+		  color: white;
+		}
+	</style>
+	<script src="lib/angular/angular.js"></script>
+	<script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
+	<script src="js/app.js"></script>
+	<script type="text/javascript">
+		angular.module("dengue360").controller("dengue360Ctrl", function ($scope) {
+			$scope.app = "Hello";
+			$scope.countries = [{"value":"Cajazeiras - PB","data":"Cajazeiras"},{"value":"Santa Helena - PB","data":"Santa Helena"},{"value":"Poço de José de Moura - PB","data":"Poço de José de Moura"},{"value":"São José de Piranhas - PB","data":"São José de Piranhas"},{"value":"São João do Rio do Peixe - PB","data":"São João do Rio do Peixe"},{"value":"Serra Grande - PB","data":"Serra Grande"},{"value":"Cachoeira dos Índios - PB","data":"Cachoeira dos Índios"},{"value":"Itaporanga - PB","data":"Itaporanga"},{"value":"Monte Horebe - PB","data":"Monte Horebe"},{"value":"Triunfo - PB","data":"Triunfo"},{"value":"Coremas - PB","data":"Coremas"},{"value":"Uiraúna - PB","data":"Uiraúna"},{"value":"Bom Jesus - PB","data":"Bom Jesus"}];
+		});
+	</script>
+
+</head>
+<body ng-controller="dengue360Ctrl">
+	
+		<div class="jumbotron">
+			<img class="img-logo" src="images/logo.png">
+			<h4>Procure por sua cidade</h4>
+
+			<div angucomplete-alt id="ex1" placeholder="Buscar cidade..." maxlength="50" pause="100" selected-object="selectedCountry" local-data="countries" search-fields="value" title-field="value" minlength="1" input-class="form-control form-control-small" match-class="highlight"></div>
+		</div>
+		{{cidadeSelecionada.value}}
+	{{selectedCountry.originalObject.data}}
+	<footer class="footer">
+      <div class="container">
+        <p class="text-muted">Desenvolvido por Rafael Tavares.</p>
+      </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+.content{
+	text-align: center;
+}
+
+.box-body{
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+.box-footer{
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-top: 2%;
+}
+
+.btn-block{
+	margin-top: 2%;
+}
+
+.img-logo{
+	width: 250px;
+	height: 250px;
+	position: center;
+}	

@@ -1,0 +1,1 @@
+angular.module("dengue360", ["angucomplete-alt"]);
