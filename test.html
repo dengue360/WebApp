@@ -45,24 +45,19 @@
 	<script src="lib/angular/angular.js"></script>
 	<script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
 	<script src="js/app.js"></script>
-	<script type="text/javascript">
-		angular.module("dengue360").controller("dengue360Ctrl", function ($scope) {
-			$scope.app = "Hello";
-			$scope.countries = [{"value":"Cajazeiras - PB","data":"Cajazeiras"},{"value":"Santa Helena - PB","data":"Santa Helena"},{"value":"Poço de José de Moura - PB","data":"Poço de José de Moura"},{"value":"São José de Piranhas - PB","data":"São José de Piranhas"},{"value":"São João do Rio do Peixe - PB","data":"São João do Rio do Peixe"},{"value":"Serra Grande - PB","data":"Serra Grande"},{"value":"Cachoeira dos Índios - PB","data":"Cachoeira dos Índios"},{"value":"Itaporanga - PB","data":"Itaporanga"},{"value":"Monte Horebe - PB","data":"Monte Horebe"},{"value":"Triunfo - PB","data":"Triunfo"},{"value":"Coremas - PB","data":"Coremas"},{"value":"Uiraúna - PB","data":"Uiraúna"},{"value":"Bom Jesus - PB","data":"Bom Jesus"}];
-		});
-	</script>
+	<script src="js/services/cidadesAPIService.js"></script>
+	<script src="js/controllers/dashCtrl.js"></script>
 
 </head>
-<body ng-controller="dengue360Ctrl">
+<body ng-controller="dashCtrl">
 	
 		<div class="jumbotron">
 			<img class="img-logo" src="images/logo.png">
 			<h4>Procure por sua cidade</h4>
-
-			<div angucomplete-alt id="ex1" placeholder="Buscar cidade..." maxlength="50" pause="100" selected-object="selectedCountry" local-data="countries" search-fields="value" title-field="value" minlength="1" input-class="form-control form-control-small" match-class="highlight"></div>
+			{{cidadeSelecionada}}
+			
 		</div>
-		{{cidadeSelecionada.value}}
-	{{selectedCountry.originalObject.data}}
+		
 	<footer class="footer">
       <div class="container">
         <p class="text-muted">Desenvolvido por Rafael Tavares.</p>
