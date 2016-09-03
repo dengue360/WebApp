@@ -1,16 +1,13 @@
-angular.module("dengue360").controller("dashCtrl", function ($scope, $http, $rootScope) {
+angular.module("dengue360").controller("dashCtrl", function ($scope, $http, $rootScope,$filter) {
 	$scope.cidadeSelecionada = JSON.parse(window.sessionStorage.getItem('cidadeS'));
-	$scope.countries = [];
-	var carregarCidades = function () {
-            $http.get("http://localhost:8080/l/cidades").success(function (data) {
-                  $scope.countries = data;
-            });
-    };
+  $scope.dataFormatada = $filter('date')(new Date(),'yyyy');
 
-    $scope.redirecionar = function (cidade) {
-            window.sessionStorage.setItem('cidadeS',JSON.stringify(cidade));
-            window.location.href = "views/dashboard.html";
-      }
+	var carregarInfos = function (cidade, ano) {
+    $http.get("http://localhost:8080/c/info?cidade="+cidade+"&ano="+ano)
+    .success(function (dat) {
+          $scope.infos = dat;
+    });
+  };
 
-      carregarCidades();
+  carregarInfos($scope.cidadeSelecionada.data, $scope.dataFormatada);
 });

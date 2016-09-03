@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="initCtrl">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,7 +11,7 @@
         <div angucomplete-alt id="ex1" placeholder="Buscar cidade..." maxlength="50" pause="100" selected-object="selectedCountry" local-data="countries" search-fields="value" title-field="value" minlength="1" input-class="form-control form-control-small" match-class="highlight"></div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary btn-block" ng-click="redirecionar(selectedCountry.originalObject)">Ver Informações</button>
+        <button class="btn btn-primary btn-block" ng-click="redirecionar(selectedCountry.originalObject, 'dash.html')">Ver Informações</button>
       </div>
     </div>
   </div>

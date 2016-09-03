@@ -12,9 +12,9 @@ angular.module("dengue360").controller("initCtrl", function ($scope, $http, $roo
             });
       };
 
-      $scope.redirecionar = function (cidade) {
+      $scope.redirecionar = function (cidade, uri) {
             window.sessionStorage.setItem('cidadeS',JSON.stringify(cidade));
-            window.location.href = "views/dashboard.html";
+            window.location.href = uri;
       }
 
       carregarCidades();

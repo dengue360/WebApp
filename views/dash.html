@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dengue 360 | Dashboard</title>
-  <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -25,6 +25,7 @@
     <script src="../bower_components/angucomplete-alt/angucomplete-alt.js"></script>
     <script src="../js/app.js"></script>
     <script src="../js/controllers/initCtrl.js"></script>
+    <script src="../js/controllers/dashCtrl.js"></script>
 
 
 
@@ -43,7 +44,7 @@
         <nav class="navbar navbar-static-top">
           <div class="container">
             <div class="navbar-header">
-              <a href="" class="navbar-brand"><b>DENGUE 360</b></a>
+              <a href="../index.html" class="navbar-brand"><b>DENGUE 360</b></a>
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                 <i class="fa fa-bars"></i>
               </button>
@@ -69,13 +70,13 @@
         </nav>
       </header>
       <!-- Full Width Column -->
-      <div class="content-wrapper">
+      <div class="content-wrapper" ng-controller="dashCtrl">
         <div class="container">
           <!-- Content Header (Page header) -->
           <section class="content-header">
             <h1>
               Visão geral
-              <small>Resumo da situação epidemiológica na cidade de {{cidadeSelecionada}}</small>
+              <small>Resumo da situação epidemiológica na cidade de {{cidadeSelecionada.data}}</small>
             </h1>
             <ol class="breadcrumb">
               <li><a href="../index.html"><i class="fa fa-dashboard"></i>Dengue 360</a></li>
@@ -84,7 +85,7 @@
           </section>
 
           <!-- Main content -->
-          <section class="content" ng-controller="initCtrl">
+          <section class="content">
             <div class="row">
               <div class="col-md-4">
                 <!-- Apply any bg-* class to to the info-box to color it -->
@@ -93,14 +94,14 @@
                     <h4>Resumo da Situação Epdemiologica</h4>
                   </div>
                   <div class="box-body">
-                     <h3>{{cidadeSelecionada}}</h3>
+                     <h3>{{cidadeSelecionada.value}}</h3>
                   </div><!-- /.box-body -->
                 </div>
                 <div class="info-box bg-green">
                   <span class="info-box-icon"><i class="fa fa-users"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text">Numero de casos notificados</span>
-                    <span class="info-box-number">4</span>
+                    <span class="info-box-number">{{infos.notificados}}</span>
                     <!-- The progress section is optional -->
                     <div class="progress">
                       <div class="progress-bar" style="width: 100%"></div>
@@ -111,7 +112,7 @@
                   <span class="info-box-icon"><i class="fa fa-line-chart"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text">Numero de casos confirmados</span>
-                    <span class="info-box-number">4</span>
+                    <span class="info-box-number">{{infos.confirmados}}</span>
                     <!-- The progress section is optional -->
                     <div class="progress">
                       <div class="progress-bar" style="width: 100%"></div>
@@ -122,7 +123,7 @@
                   <span class="info-box-icon"><i class="fa fa-medkit"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text">Numero de casos graves</span>
-                    <span class="info-box-number">4</span>
+                    <span class="info-box-number">{{infos.graves}}</span>
                     <!-- The progress section is optional -->
                     <div class="progress">
                       <div class="progress-bar" style="width: 100%"></div>
@@ -133,7 +134,7 @@
                   <span class="info-box-icon"><i class="fa fa-warning"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text">Numero de Obitos</span>
-                    <span class="info-box-number">4</span>
+                    <span class="info-box-number">{{infos.obitos}}</span>
                     <!-- The progress section is optional -->
                     <div class="progress">
                       <div class="progress-bar" style="width: 100%"></div>
