@@ -11,6 +11,7 @@ angular.module("dengue360").controller("dashCtrl", function ($scope, $http, $roo
   var carregarCoordenadas = function (cidade, ano) {
     $http.get("http://localhost:8080/c/coor?cidade="+cidade+"&ano="+ano)
     .success(function (dat) {
+          $scope.qtdeCoor = dat.length;
           $scope.coordenadas = dat;
     });
   };
@@ -25,4 +26,5 @@ angular.module("dengue360").controller("dashCtrl", function ($scope, $http, $roo
 
   carregarInfos($scope.cidadeSelecionada.data, $scope.dataFormatada);
   carregarCoordenadas($scope.cidadeSelecionada.data, $scope.dataFormatada);
+
 });

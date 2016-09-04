@@ -151,13 +151,12 @@
                     <h4>Mapa de Focos</h4>
                   </div>
                   <div class="box-body">
-                    <ng-map zoom="14" map-type-id="SATELLITE" style="height: 445px;"center="[-6.8897071, -38.5612185]">
-                      <marker ng-repeat="coor in coordenadas" position="{{coor.pos}}" title="Foco"></marker>
-                    </ng-map>
-
+                    <h4><b>Em {{cidadeSelecionada.data}}, no ano de {{dataFormatada}}, foram identificados {{qtdeCoor}} focos prováveis de Dengue. </b></h4>
                   </div><!-- /.box-body -->
                   <div class="box-footer">
-                    
+                    <ng-map zoom="14" map-type-id="SATELLITE" style="height: 400px;"center="{{coordenadas[0].pos}}">
+                      <marker ng-repeat="coor in coordenadas" position="{{coor.pos}}" title="Foco"></marker>
+                    </ng-map>
                   </div><!-- /.box-footer -->
                 </div><!-- /.box -->
               </div>
