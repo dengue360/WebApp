@@ -1,1 +1,1 @@
-angular.module("dengue360", ["angucomplete-alt"]);
+angular.module("dengue360", ["angucomplete-alt","ngMap"]);
