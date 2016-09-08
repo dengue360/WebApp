@@ -10,11 +10,17 @@ angular.module("dengue360").controller("mapCtrl", function ($scope, $http,$filte
   $scope.caso = {
     categoria: "todos"
   };
+
+  //se for todos não passa a categoria
   
-  $scope.gestanteOP = [{tipo:"1° Trimestre"}, {tipo:"2° Trimestre"}]
+  $scope.gestanteOP = [{tipo:"1° Trimestre"}, {tipo:"2° Trimestre"}, {tipo:"3º Trimestre"}, 
+  {tipo:"Idade gestacional ignorada"}, {tipo:"Não"}, {tipo:"Não se aplica"}, {tipo:"Ignorado"}];
 
-  $scope.gestante = "x";
+  $scope.sexoOP = [{tipo:"Masculino"},{tipo:"Feminino"},{tipo:"Ignorado"}];
 
+
+  $scope.gestante = "";
+  $scope.sexo = "";
 
   var carregarCoordenadas = function (cidade, ano) {
     $http.get("http://localhost:8080/c/coor?cidade="+cidade+"&ano="+ano)
