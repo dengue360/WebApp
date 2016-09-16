@@ -22,8 +22,24 @@ angular.module("dengue360").controller("dashCtrl", function ($scope, $http, $roo
     });
   };
 
+var carregarInfoGraph = function (cidade, ano) {
+    $http.get("http://localhost:8080/c/graph/info?cidade="+cidade+"&ano="+ano)
+    .success(function (dat) {
+          sessionStorage.setItem('resultInfo',JSON.stringify(dat));
+    });
+  };
+
+  var carregarSexGraph = function (cidade, ano) {
+    $http.get("http://localhost:8080/c/graph/sex?cidade="+cidade+"&ano="+ano)
+    .success(function (dat) {
+          sessionStorage.setItem('resultSex',JSON.stringify(dat));
+    });
+  };
+
+  
 
   carregarInfos($scope.cidadeSelecionada.data, $scope.dataFormatada);
   carregarCoordenadas($scope.cidadeSelecionada.data, $scope.dataFormatada);
-
+  carregarInfoGraph($scope.cidadeSelecionada.data, $scope.dataFormatada);
+  carregarSexGraph($scope.cidadeSelecionada.data, $scope.dataFormatada);
 });

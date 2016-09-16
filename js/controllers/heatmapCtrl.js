@@ -1,13 +1,17 @@
-angular.module("dengue360").controller("mapCtrl", function ($scope, $http,$filter, NgMap) {
+angular.module("dengue360").controller("heatmapCtrl", function ($scope, $http,$filter, NgMap) {
 	$scope.cidadeSelecionada = JSON.parse(window.sessionStorage.getItem('cidadeS'));
   $scope.dataFormatada = $filter('date')(new Date(),'yyyy');
 
   //Map config
   $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyChZmr53ae-Rp57sXbnHgKw-H9L0FGyHbw";
 
-  $scope.coordenadas = [];  
+  $scope.coordenadas = [];
 
- 
+  
+    NgMap.getMap().then(function(map) {
+      this.map = map;
+      this.heatmap = this.map.heatmapLayers.foo;
+    });
 
   $scope.caso = {
     categoria: "todos"
@@ -24,20 +28,6 @@ angular.module("dengue360").controller("mapCtrl", function ($scope, $http,$filte
   $scope.gestante = "";
   $scope.sexo = "";
 
-  var carregarInfoGraph = function (cidade, ano) {
-    $http.get("http://localhost:8080/c/graph/info?cidade="+cidade+"&ano="+ano)
-    .success(function (dat) {
-          window.sessionStorage.setItem('resultInfo',JSON.stringify(dat));
-    });
-  };
-
-  var carregarSexGraph = function (cidade, ano) {
-    $http.get("http://localhost:8080/c/graph/sex?cidade="+cidade+"&ano="+ano)
-    .success(function (dat) {
-          window.sessionStorage.setItem('resultSex',JSON.stringify(dat));
-    });
-  };
-
   var carregarCoordenadas = function (cidade, ano) {
     $http.get("http://localhost:8080/c/coor?cidade="+cidade+"&ano="+ano)
     .success(function (dat) {
@@ -48,6 +38,5 @@ angular.module("dengue360").controller("mapCtrl", function ($scope, $http,$filte
 
 
   carregarCoordenadas($scope.cidadeSelecionada.data, $scope.dataFormatada);
-  carregarInfoGraph($scope.cidadeSelecionada.data, $scope.dataFormatada);
-  carregarSexGraph($scope.cidadeSelecionada.data, $scope.dataFormatada);
+
 });
