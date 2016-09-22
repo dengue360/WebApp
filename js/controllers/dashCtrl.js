@@ -36,10 +36,25 @@ var carregarInfoGraph = function (cidade, ano) {
     });
   };
 
+  var carregarFaixaGraph = function (cidade, ano) {
+    $http.get("http://localhost:8080/c/graph/faixa?cidade="+cidade+"&ano="+ano)
+    .success(function (dat) {
+          sessionStorage.setItem('resultFaixa',JSON.stringify(dat));
+    });
+  };
+
+  var carregarGravidezGraph = function (cidade, ano) {
+    $http.get("http://localhost:8080/c/graph/gravidez?cidade="+cidade+"&ano="+ano)
+    .success(function (dat) {
+          sessionStorage.setItem('resultGravidez',JSON.stringify(dat));
+    });
+  };
   
 
   carregarInfos($scope.cidadeSelecionada.data, $scope.dataFormatada);
   carregarCoordenadas($scope.cidadeSelecionada.data, $scope.dataFormatada);
   carregarInfoGraph($scope.cidadeSelecionada.data, $scope.dataFormatada);
   carregarSexGraph($scope.cidadeSelecionada.data, $scope.dataFormatada);
+  carregarFaixaGraph($scope.cidadeSelecionada.data, $scope.dataFormatada);
+  carregarGravidezGraph($scope.cidadeSelecionada.data, $scope.dataFormatada);
 });

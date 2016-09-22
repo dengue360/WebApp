@@ -11,13 +11,13 @@ $(function () {
                 type: 'pie'
             },
             title: {
-                text: 'Resumo do número de casos de Dengue quanto ao Sexo'
+                text: 'Resumo do número de casos notificados de Dengue quanto ao Sexo'
             },
             subtitle: {
                 text: 'Clique nas opções da legenda para filtrar os resultados.'
             },
             tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> do total'
             },
             plotOptions: {
                 pie: {
