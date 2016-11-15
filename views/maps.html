@@ -21,6 +21,10 @@
     <link rel="stylesheet" type="text/css" href="../bower_components/angucomplete-alt/angucomplete-alt.css">
     <link rel="stylesheet" type="text/css" href="../css/dash.css">
 
+    
+    <link  href="../bower_components/datepicker/dist/datepicker.css" rel="stylesheet">
+    
+
     <!-- PROJECT IMPORTS -->
     <script src="../lib/angular/angular.js"></script>
     <script src="../bower_components/angucomplete-alt/angucomplete-alt.js"></script>
@@ -97,7 +101,7 @@
                     <h4>Filtros</h4>
                   </div>
                   <div class="box-body">
-                     <button class="btn btn-primary btn-block" ng-click="">Filtrar Mapa</button>
+                     <button class="btn btn-primary btn-block" ng-click="filtrar()">Filtrar Mapa</button>
                   </div><!-- /.box-body -->
                 </div>
                 
@@ -109,7 +113,35 @@
                     </div><!-- /.box-tools -->
                   </div><!-- /.box-header -->
                   <div class="box-body">
-                    The body of the box
+                    <div class="row">
+                      <div class="col-md-4">
+                        <h4>Data Início:</h4>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                          </div>
+                          <input type="text" id="dtBegin" class="form-control pull-right" data-toggle="datepicker" ng-model="dtInicio" placeholder="">
+                        </div><!-- /.input group -->  
+                      </div>
+                    </div>
+                    
+                    <br>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <h4>Data Fim:</h4>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                          </div>
+                          <input type="text" id="dtEnd" class="form-control pull-right" data-toggle="datepicker" ng-model="dtFim" placeholder="">
+                        </div><!-- /.input group -->   
+                      </div>
+                    </div>
+                    
                   </div><!-- /.box-body -->
                 </div><!-- /.box -->
                 <div class="box box-default collapsed-box">
@@ -130,20 +162,20 @@
                           Todos
                         </label>
                         <label class="custom-label">
-                          <input ng-model="caso.categoria" type="radio"  value="confirmado">
+                          <input ng-model="caso.categoria" type="radio"  value="confirmados">
                           Confirmados
                         </label>
                         <label class="custom-label">
-                          <input ng-model="caso.categoria" type="radio"  value="grave">
+                          <input ng-model="caso.categoria" type="radio"  value="graves">
                           Alarmantes/Graves
                         </label>
                         <label class="custom-label">
-                          <input ng-model="caso.categoria" type="radio"  value="obito">
+                          <input ng-model="caso.categoria" type="radio"  value="obitos">
                           Obitos
                         </label> 
                       </div>  
                     </div>
-                    {{caso.categoria}}
+                    
 
                     <br>
                     <div class="row">
@@ -156,7 +188,7 @@
                         </select>
                       </div>
                     </div>
-                    {{gestante}}
+                    
                   </div><!-- /.box-body -->
                 </div><!-- /.box -->
                 <div class="box box-default collapsed-box">
@@ -167,7 +199,17 @@
                     </div><!-- /.box-tools -->
                   </div><!-- /.box-header -->
                   <div class="box-body">
-                    sss
+                    <div class="row">
+                      <div class="col-md-4">
+                        <h4>Faixa Etária:</h4>
+                      </div>
+                      <div class="col-md-8">
+                        <select class="form-control"  ng-model="faixa" ng-options="fai.tipo for fai in faixaOP">
+                          <option value="">Selecione uma faixa</option>
+                        </select>
+                      </div>
+                      
+                    </div>
                   </div><!-- /.box-body -->
                 </div><!-- /.box -->
                 <div class="box box-default collapsed-box">
@@ -187,13 +229,13 @@
                           <option value="">Selecione um tipo</option>
                         </select>
                       </div>
-                      {{sexo}}
+                      
                     </div>
                   </div><!-- /.box-body -->
                 </div><!-- /.box -->
                 
               </div>
-              <div class="col-md-8" ng-controller="mapCtrl">
+              <div class="col-md-8">
                 <div class="nav-tabs-custom">
                   <ul class="nav nav-tabs nav-justified">
                     <li role="presentation" class="active"><a href="#focos" data-toggle="tab">Mapa de Focos</a></li>
@@ -204,8 +246,8 @@
                     <div class="tab-pane active" id="focos" >    
                       <div class="panel panel-default" >
                         <div class="panel-body">
-                            <ng-map zoom="14" map-type-id="SATELLITE" style="height: 400px;"center="{{coordenadas[0].pos}}">
-                              <marker ng-repeat="coor in coordenadas" position="{{coor.pos}}" title="Foco"></marker>
+                            <ng-map zoom="14" map-type-id="SATELLITE" style="height: 400px;"center="{{coordenadasMap[0].pos}}">
+                              <marker ng-repeat="coor in coordenadasMap" position="{{coor.pos}}" title="Foco"></marker>
                             </ng-map>
                         </div>
                       </div>
@@ -250,5 +292,23 @@
     <script src="../bower_components/AdminLTE/dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="../dist/js/demo.js"></script>
+    <script src="../bower_components/datepicker/dist/datepicker.js"></script>
+    <script src="../bower_components/datepicker/i18n/datepicker.pt-BR.js"></script>
+    
+    <script type="text/javascript">
+      $('[data-toggle="datepicker"]').datepicker({
+        autoHide: true,
+        format: 'dd-mm-yyyy',
+        date: new Date(),
+        language: 'pt-BR'
+      });
+
+      console.log($('#dtEnd').datepicker('getDate', true));
+      var x = document.getElementById("dtEnd");
+      x.setAttribute('placeholder', $('#dtEnd').datepicker('getDate', true));
+
+      var x = document.getElementById("dtBegin");
+      x.setAttribute('placeholder', $('#dtBegin').datepicker('getDate', true));
+    </script>
   </body>
 </html>
